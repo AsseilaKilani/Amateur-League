@@ -1,0 +1,424 @@
+* {
+    margin:0;
+    box-sizing: border-box;
+}
+
+body{
+    padding: 0%;
+    margin: 0%;
+    overflow-x: hidden;
+}
+
+.row2{
+    height: 370px;
+}
+
+.column {
+    float: right;
+    width: 33.33%;
+    padding: 10px;
+    height: 100%;
+    /* Should be removed. Only for demonstration */
+}
+
+
+
+.buton {
+    float: right;
+    margin-right: 10%;
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 45px;
+    font-size: 90%;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: black;
+    background-color: #8FFF00;
+    border-radius: 45px;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+.logo {
+    text-align: center;
+}
+/* Clearfix (clear floats) */
+
+.row {
+    margin-top: 5%;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+/* Clearfix (clear floats) */
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+/* Clearfix (clear floats) */
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+#menuToggle {
+    display: block;
+    position: relative;
+    top: 50px;
+    left: 50px;
+    z-index: 1;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#menuToggle a {
+    text-decoration: none;
+    color: #232323;
+    transition: color 0.3s ease;
+}
+
+#menuToggle a:hover {
+    color: tomato;
+}
+
+#menuToggle input {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: -7px;
+    left: -5px;
+    cursor: pointer;
+    opacity: 0;
+    /* hide this */
+    z-index: 2;
+    /* and place it over the hamburger */
+    -webkit-touch-callout: none;
+}
+/*
+* Just a quick hamburger
+*/
+
+#menuToggle span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    background: #cdcdcd;
+    border-radius: 3px;
+    z-index: 1;
+    transform-origin: 4px 0px;
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), opacity 0.55s ease;
+}
+/* Transform all the slices of hamburger into a crossmark.*/
+
+#menuToggle input:checked~span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: #232323;
+}
+/*
+* But let's hide the middle one.
+*/
+
+#menuToggle input:checked~span:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+}
+/*
+* Ohyeah and the last one should go the other direction
+*/
+
+#menuToggle input:checked~span:nth-last-child(2) {
+    transform: rotate(-45deg) translate(0, -1px);
+}
+/*
+* Make this absolute positioned
+* at the top left of the screen
+*/
+
+#menu {
+    position: absolute;
+    width: 300px;
+    margin: -100px 0 0 -50px;
+    padding: 50px;
+    padding-top: 125px;
+    background: #ededed;
+    list-style-type: none;
+    -webkit-font-smoothing: antialiased;
+    /* to stop flickering of text in safari */
+    transform-origin: 0% 0%;
+    transform: translate(-100%, 0);
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+}
+
+#menu li {
+    padding: 10px 0;
+    font-size: 22px;
+}
+/*
+* And let's slide it in from the left
+*/
+
+#menuToggle input:checked~ul {
+    transform: none;
+}
+
+
+
+
+.wrapper {
+    display: inline-flex;
+    list-style: none;
+    margin-left: 40%;
+}
+
+.wrapper .icon {
+    position: relative;
+    background: #ffffff;
+    border-radius: 50%;
+    padding: 15px;
+    margin: 10px;
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip {
+    position: absolute;
+    top: 0;
+    font-size: 14px;
+    background: #ffffff;
+    color: #ffffff;
+    padding: 5px 8px;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip::before {
+    position: absolute;
+    content: "";
+    height: 8px;
+    width: 8px;
+    background: #ffffff;
+    bottom: -3px;
+    left: 50%;
+    transform: translate(-50%) rotate(45deg);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .tooltip {
+    top: -45px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.wrapper .icon:hover span,
+.wrapper .icon:hover .tooltip {
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper .facebook:hover,
+.wrapper .facebook:hover .tooltip,
+.wrapper .facebook:hover .tooltip::before {
+    background: #1877F2;
+    color: #ffffff;
+}
+
+.wrapper .twitter:hover,
+.wrapper .twitter:hover .tooltip,
+.wrapper .twitter:hover .tooltip::before {
+    background: #1DA1F2;
+    color: #ffffff;
+}
+
+.wrapper .instagram:hover,
+.wrapper .instagram:hover .tooltip,
+.wrapper .instagram:hover .tooltip::before {
+    background: #E4405F;
+    color: #ffffff;
+}
+
+.wrapper .github:hover,
+.wrapper .github:hover .tooltip,
+.wrapper .github:hover .tooltip::before {
+    background: #333333;
+    color: #ffffff;
+}
+
+.wrapper .youtube:hover,
+.wrapper .youtube:hover .tooltip,
+.wrapper .youtube:hover .tooltip::before {
+    background: #CD201F;
+    color: #ffffff;
+}
+h1{
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+
+    color: black;
+    margin-bottom: 100px;
+    font-style: bold;
+    
+}
+h1 >p {
+    font-family: 'Montserrat', sans-serif;
+
+    font-style: bold;
+    font-size: 4rem;
+    
+      
+    
+
+}
+#personne >img{
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+    
+}
+
+#personne > p{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-style: bold;
+    text-align: center;
+
+}
+
+#Beni > p{font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    
+}
+
+#personne2 >img{
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    
+}
+    
+
+
+#personne2 > p{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-style: bold;
+    text-align: center;
+
+
+}
+
+#GIBRIL > p{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+#personne3 >img{
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    
+
+}
+
+#personne3 > p{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-style: bold;
+    text-align: center;
+
+    
+
+}
+
+#KILANI > p{
+    font-family: 'Montserrat', sans-serif; text-align: center;
+}
+
+/* Ajoutez ces règles dans votre fichier styles/test2.css ou dans une balise style dans le head de votre HTML */
+
+/* Styles généraux */
+
+/* ... Vos styles existants ... */
+
+/* Styles pour les appareils mobiles (max-width: 768px) */
+/* Media query pour les appareils mobiles */
+footer {
+    text-align: center;
+    margin-top: 20px; /* Espacement en haut pour séparer du contenu */
+    background-color: #f2f2f2;
+    padding: 20px 0;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.wrapper .icon {
+    margin: 0 10px;
+}
+@media screen and (max-width: 768px) {
+    footer {
+        display: none !important; /* Masquer le footer sur les appareils mobiles */
+    }
+
+    /* Styles pour recentrer les éléments */
+    #personne,
+    #personne2,
+    #personne3 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Réorganiser la taille des images */
+    #personne img,
+    #personne2 img,
+    #personne3 img {
+        width: 50%; /* Ajuster la taille de l'image */
+        display: block;
+        margin: 0 auto;
+    }
+
+    /* Ajuster la taille du texte */
+    #personne p,
+    #personne2 p,
+    #personne3 p {
+        font-size: 1.5rem;
+    }
+
+ 
+}
+
